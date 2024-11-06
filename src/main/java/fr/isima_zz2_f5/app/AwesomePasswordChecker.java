@@ -19,25 +19,29 @@ public class AwesomePasswordChecker {
 
   private final List<double[]> clusterCenters = new ArrayList<>();
 
+  /** Creates an instance of AwesomePasswordChecker.
+  */
   public static AwesomePasswordChecker getInstance(File file) throws IOException {
     if (instance == null) {
-          instance = new AwesomePasswordChecker(new FileInputStream(file));
+      instance = new AwesomePasswordChecker(new FileInputStream(file));
     }
     return instance;
   }
   
+  /** Returns the instance of AwesomePasswordChecker.
+  */
   public static AwesomePasswordChecker getInstance() throws IOException {
     if (instance == null) {
       InputStream is = AwesomePasswordChecker.class.getClassLoader().getResourceAsStream("cluster_centers_HAC_aff.csv");
       instance = new AwesomePasswordChecker(is);
     }
-      return instance;
+    return instance;
   }
       
   private AwesomePasswordChecker(InputStream is) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(is));
-  String line;
-    while((line = br.readLine()) != null){
+    String line;
+    while ((line = br.readLine()) != null) {
       String[] values = line.split(";");
       double[] center = new double[values.length];
       
@@ -49,13 +53,15 @@ public class AwesomePasswordChecker {
     br.close();
   }
 
+  /** Returns the mask of a password.
+  */
   public int[] maskAff(String password) {
     int[] maskArray = new int[28]; 
     int limit = Math.min(password.length(), 28);
     
     for (int i = 0; i < limit; ++i) {
-          char c = password.charAt(i);
-      switch (c) {
+      char cc = password.charAt(i);
+      switch (cc) {
         case 'e': 
         case 's':
         case 'a':
@@ -66,7 +72,7 @@ public class AwesomePasswordChecker {
         case 'u':
         case 'o':
         case 'l':
-            maskArray[i] = 1;
+          maskArray[i] = 1;
           break;
         case 'E':
         case 'S':
@@ -93,11 +99,11 @@ public class AwesomePasswordChecker {
           maskArray[i] = 6;
           break;
         default:
-          if (Character.isLowerCase(c)) {
+          if (Character.isLowerCase(cc)) {
             maskArray[i] = 2;
-          } else if (Character.isUpperCase(c)) {
+          } else if (Character.isUpperCase(cc)) {
             maskArray[i] = 4;
-          } else if (Character.isDigit(c)) {
+          } else if (Character.isDigit(cc)) {
             maskArray[i] = 5;
           } else {
             maskArray[i] = 7;
@@ -107,6 +113,8 @@ public class AwesomePasswordChecker {
     return maskArray;
   }
 
+  /** Returns the distance of a password.
+  */
   public double getDIstance(String password) {
     int[] maskArray = maskAff(password);
     double minDistance = Double.MAX_VALUE;
@@ -116,15 +124,17 @@ public class AwesomePasswordChecker {
     return minDistance;
   }
 
-  private double euclideanDistance(int[] a, double[] b) {
+  private double euclideanDistance(int[] aa, double[] bb) {
     double sum = 0;
-    for (int i = 0; i < a.length; i++) {
-      sum += (a[i] - b[i]) * (a[i] + b[i]);
+    for (int i = 0; i < aa.length; i++) {
+      sum += (aa[i] - bb[i]) * (aa[i] + bb[i]);
     }
     return Math.sqrt(sum);
   }
 
-  public static String ComputeMD5(String input) {
+  /** Calculates the MD5 value of the input.
+  */
+  public static String computeMD5(String input) {
     byte[] message = input.getBytes();
     int messageLenBytes = message.length;
 
@@ -142,14 +152,14 @@ public class AwesomePasswordChecker {
     System.arraycopy(paddingBytes, 0, paddedMessage, messageLenBytes, paddingBytes.length);
     System.arraycopy(lengthBytes, 0, paddedMessage, totalLen - 8, 8);
 
-    int[] h = {
+    int[] hh = {
       0x67452301,
       0xefcdab89,
       0x98badcfe,
       0x10325476
     };
 
-    int[] k = {
+    int[] kk = {
       0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee, 0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
       0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be, 0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,
       0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa, 0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8,
@@ -160,7 +170,7 @@ public class AwesomePasswordChecker {
       0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1, 0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391
     };
 
-    int[] r = {
+    int[] rr = {
       7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
       5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
       4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
@@ -168,47 +178,48 @@ public class AwesomePasswordChecker {
     };
 
     for (int i = 0; i < numBlocks; i++) {
-      int[] w = new int[16];
+      int[] ww = new int[16];
       for (int j = 0; j < 16; j++) {
-        w[j] = ByteBuffer.wrap(paddedMessage, (i << 6) + (j << 2), 4).order(ByteOrder.LITTLE_ENDIAN).getInt();
+        ww[j] = ByteBuffer.wrap(paddedMessage, (i << 6) + (j << 2), 4).order(ByteOrder.LITTLE_ENDIAN).getInt();
       }
 
-      int a = h[0];
-      int b = h[1];
-      int c = h[2];
-      int d = h[3];
+      int aa = hh[0];
+      int bb = hh[1];
+      int cc = hh[2];
+      int dd = hh[3];
 
       for (int j = 0; j < 64; j++) {
-        int f, g;
+        int ff;
+        int gg;
         if (j < 16) {
-          f = (b & c) | (~b & d);
-          g = j;
+          ff = (bb & cc) | (~bb & dd);
+          gg = j;
         } else if (j < 32) {
-          f = (d & b) | (~d & c);
-          g = (5 * j + 1) % 16;
+          ff = (dd & bb) | (~dd & cc);
+          gg = (5 * j + 1) % 16;
         } else if (j < 48) {
-          f = b ^ c ^ d;
-          g = (3 * j + 5) % 16;
+          ff = bb ^ cc ^ dd;
+          gg = (3 * j + 5) % 16;
         } else {
-          f = c ^ (b | ~d);
-          g = (7 * j) % 16;
+          ff = cc ^ (bb | ~dd);
+          gg = (7 * j) % 16;
         }
-        int temp = d;
-        d = c;
-        c = b;
-        b = b + Integer.rotateLeft(a + f + k[j] + w[g], r[j]);
-        a = temp;
+        int temp = dd;
+        aa = temp;
+        dd = cc;
+        cc = bb;
+        bb = bb + Integer.rotateLeft(aa + ff + kk[j] + ww[gg], rr[j]);
       }
 
-      h[0] += a;
-      h[1] += b;
-      h[2] += c;
-      h[3] += d;
+      hh[0] += aa;
+      hh[1] += bb;
+      hh[2] += cc;
+      hh[3] += dd;
     }
 
     // Step 5: Output
     ByteBuffer md5Buffer = ByteBuffer.allocate(16).order(ByteOrder.LITTLE_ENDIAN);
-    md5Buffer.putInt(h[0]).putInt(h[1]).putInt(h[2]).putInt(h[3]);
+    md5Buffer.putInt(hh[0]).putInt(hh[1]).putInt(hh[2]).putInt(hh[3]);
     byte[] md5Bytes = md5Buffer.array();
 
     StringBuilder md5Hex = new StringBuilder();

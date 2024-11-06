@@ -1,4 +1,4 @@
-package fr.isima-zz2-f5.app;
+package fr.isima_zz2_f5.app;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit test for simple App.
  */
-public class AwesomePasswordCheckerTest {
+public class AppTest {
 
     /**
      * Rigorous Test :-)

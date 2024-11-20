@@ -1,6 +1,6 @@
 .DS_Store
 *.swp
-/target/
+/target/*
 /nbproject/
 /nbactions.xml
 /nb-configuration.xml

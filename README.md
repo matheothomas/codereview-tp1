@@ -10,10 +10,10 @@
     - [x] Fix bugs if necessary.
 - SCM:
     - [x] Github project.
-    - [ ] Security.md.
+    - [x] Security.md.
     - [x] Issues Templates.
     - [x] Pull request template.
-    - [ ] Protected Branches policies.
+    - [x] Protected Branches policies.
     - [ ] Define pull request policy (approval etc…)
 - Tests:
     - [ ] Units Tests implementation with proper test plan.

@@ -28,4 +28,4 @@
     - Foreach main modification:
         - [ ] Build and Deploy version in Github Maven registry.
         - [ ] Deploy documentation using GH-Pages with URL (blah.com/javadoc/<version>)
-        - [ ] Deploy Cobertura (Cojojo?) report with GH-Pages with URL (blah.com/cobertura/<version>)
+        - [ ] Deploy Cobertura (jacoco) report with GH-Pages with URL (blah.com/cobertura/<version>)

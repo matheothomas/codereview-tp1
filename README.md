@@ -16,7 +16,7 @@ AwesomePasswordChecker is a Java class designed to evaluate and analyze password
 
 ## TODO
 - [x] Maven/Gradle/Ant project
-- [ ] README.md with a summary of the project and basic usage of the library.
+- [x] README.md with a summary of the project and basic usage of the library.
 - Code:
     - [x] License chosen.
     - [x] Comment the code using Javadoc.

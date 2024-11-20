@@ -10,7 +10,7 @@
     - [x] Fix bugs if necessary.
 - SCM:
     - [x] Github project.
-    - [x] Security.md.
+    - [ ] Security.md.
     - [x] Issues Templates.
     - [x] Pull request template.
     - [ ] Protected Branches policies.

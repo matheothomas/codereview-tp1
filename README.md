@@ -20,10 +20,10 @@
     - [ ] “Performance test” on “ComputeMD5” method
 - CI/CD:
     - Foreach pull requests:￼
-        - [ ] Checkstyle
-        - [ ] Unit Tests passed.
+        - [x] Checkstyle
+        - [x] Unit Tests passed.
         - [ ] Cobertura reach 90%.
-        - [ ] Performance Tests passed.
+        - [x] Performance Tests passed.
         - [ ] SAST run successfully without default (Ex: Semgrep).
     - Foreach main modification:
         - [ ] Build and Deploy version in Github Maven registry.

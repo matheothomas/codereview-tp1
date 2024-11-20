@@ -10,10 +10,10 @@
     - [x] Fix bugs if necessary.
 - SCM:
     - [x] Github project.
-    - [ ] Security.md.
+    - [x] Security.md.
     - [x] Issues Templates.
     - [x] Pull request template.
-    - [ ] Protected Branches policies.
+    - [x] Protected Branches policies.
     - [ ] Define pull request policy (approval etc…)
 - Tests:
     - [ ] Units Tests implementation with proper test plan.
@@ -28,4 +28,4 @@
     - Foreach main modification:
         - [ ] Build and Deploy version in Github Maven registry.
         - [ ] Deploy documentation using GH-Pages with URL (blah.com/javadoc/<version>)
-        - [ ] Deploy Cobertura (Cojojo?) report with GH-Pages with URL (blah.com/cobertura/<version>)
+        - [ ] Deploy Cobertura (jacoco) report with GH-Pages with URL (blah.com/cobertura/<version>)
